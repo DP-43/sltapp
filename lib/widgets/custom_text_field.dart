@@ -60,7 +60,11 @@ class CustomTextField extends StatelessWidget {
         onTap: onTap,
         decoration: InputDecoration(
           hintText: hint,
-          hintStyle: const TextStyle(color: AppColors.textSecondary),
+          hintMaxLines: 1,
+          hintStyle: const TextStyle(
+            color: AppColors.textSecondary,
+            overflow: TextOverflow.ellipsis,
+          ),
           prefixIcon: Icon(icon, color: AppColors.primary, size: iconSize), 
           suffixIcon: isPassword 
               ? IconButton(
