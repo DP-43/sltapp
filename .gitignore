@@ -43,3 +43,18 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Windows-specific
+bin/
+obj/
+test_driver/
+windows/flutter/ephemeral/
+windows/flutter/generated_plugin_registrant.h
+windows/flutter/generated_plugin_registrant.cc
+windows/flutter/generated_plugins.cmake
+
+# Visual Studio files
+.vs/
+UserSecretsId
+[Bb]in/
+[Oo]bj/
