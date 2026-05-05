@@ -133,7 +133,7 @@ class AppLocalizationsTa extends AppLocalizations {
   String get enterCredentials => 'உங்கள் நற்சான்றிதழ்களை உள்ளிடவும்';
 
   @override
-  String get enterNic => 'அடையாள அட்டை அல்லது பாஸ்போர்ட் எண்';
+  String get enterNic => 'அட.அட்டை / பாஸ்போர்ட் எண்';
 
   @override
   String get password => 'கடவுச்சொல்';
