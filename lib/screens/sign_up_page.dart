@@ -25,11 +25,12 @@ class _SignUpPageState extends State<SignUpPage> {
   late final TextEditingController _lastNameController;
   late final TextEditingController _nicController;
   late final TextEditingController _passportController;
+  late final TextEditingController _countryController;
   late final TextEditingController _mobileController;
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
   late final TextEditingController _confirmController;
-  late final TextEditingController _countryController;
+  
 
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
@@ -47,12 +48,14 @@ class _SignUpPageState extends State<SignUpPage> {
     _lastNameController = TextEditingController(text: draft.draftLastName);
     _nicController = TextEditingController(text: draft.draftNic);
     _passportController = TextEditingController(text: draft.draftPassport);
+     _selectedCountry = draft.draftCountry;
+    _countryController = TextEditingController(text: _selectedCountry);
     _mobileController = TextEditingController(text: draft.draftMobile);
     _emailController = TextEditingController(text: draft.draftEmail);
     _passwordController = TextEditingController();
     _confirmController = TextEditingController();
-    _selectedCountry = draft.draftCountry;
-    _countryController = TextEditingController(text: _selectedCountry);
+   
+    
   }
 
   @override
@@ -61,11 +64,12 @@ class _SignUpPageState extends State<SignUpPage> {
     _lastNameController.dispose();
     _nicController.dispose();
     _passportController.dispose();
+    _countryController.dispose();
     _mobileController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     _confirmController.dispose();
-    _countryController.dispose();
+    
     super.dispose();
   }
 
@@ -142,6 +146,33 @@ class _SignUpPageState extends State<SignUpPage> {
                                 .saveDraft(passport: val),
                           ),
                           CustomTextField(
+                            controller: _countryController,
+                            hint: AppLocalizations.of(context)!.selectCountry,
+                            icon: Icons.public,
+                            readOnly: true,
+                            suffixIconWidget: const Icon(Icons.arrow_drop_down, color: AppColors.textSecondary),
+                            onTap: () {
+                              showCountryPicker(
+                                context: context,
+                                showPhoneCode: false,
+                                onSelect: (Country country) {
+                                  setState(() {
+                                    _selectedCountry = country.name;
+                                    _countryController.text = country.name;
+                                    
+                                    // uto set the country code
+                                    _mobileController.text = '+${country.phoneCode} ';
+                                  });
+                                  context.read<SignUpProvider>().saveDraft(
+                                    country: country.name,
+                                    mobile: _mobileController.text,
+                                  ); 
+                                },
+                              );
+                            },
+                            margin: const EdgeInsets.only(bottom: 8.0),
+                          ),
+                          CustomTextField(
                             controller: _mobileController,
                             hint: AppLocalizations.of(context)!.mobileNumber,
                             icon: Icons.phone,
@@ -160,29 +191,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 .saveDraft(email: val),
                           ),
 
-                          CustomTextField(
-                            controller: _countryController,
-                            hint: AppLocalizations.of(context)!.selectCountry,
-                            icon: Icons.public,
-                            readOnly: true,
-                            suffixIconWidget: const Icon(Icons.arrow_drop_down, color: AppColors.textSecondary),
-                            onTap: () {
-                              showCountryPicker(
-                                context: context,
-                                showPhoneCode: false,
-                                onSelect: (Country country) {
-                                  setState(() {
-                                    _selectedCountry = country.name;
-                                    _countryController.text = country.name;
-                                  });
-                                  context.read<SignUpProvider>().saveDraft(
-                                    country: country.name,
-                                  ); 
-                                },
-                              );
-                            },
-                            margin: const EdgeInsets.only(bottom: 8.0),
-                          ),
+                          
 
                           CustomTextField(
                             controller: _passwordController,

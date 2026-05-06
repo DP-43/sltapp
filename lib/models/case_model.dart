@@ -13,6 +13,6 @@ class CaseModel {
     required this.status,
   });
 
-  //When the case is still open
+  //When case still open
   bool get isActive => status != 'Resolved' && status != 'Rejected';
 }

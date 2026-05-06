@@ -9,7 +9,7 @@ class LanguageProvider extends ChangeNotifier {
  
   void changeLanguage(Locale newLocale) {
     if (_currentLocale != newLocale) {
-      _currentLocale = newLocale;
+      _currentLocale = newLocale;//store new selected language
       notifyListeners(); 
     }
   }
