@@ -23,10 +23,11 @@ class _HomePageState extends State<HomePage> {
 
   // The local asset paths for the requested images
   final List<String> _imagePaths = [
+    'assets/images/airlines.jpeg',
     'assets/images/maligawa.jpg',
     'assets/images/nelumkuluna.jpg',
     'assets/images/gallefort.jpg',
-    'assets/images/temple.jpg',
+   
   
   ];
   
@@ -84,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                   height: carouselHeight,
                 ),
               ),
-            
+          
               Padding(
                 padding: EdgeInsets.only(
                   left: Responsive.setWidth(20),
@@ -92,6 +93,7 @@ class _HomePageState extends State<HomePage> {
                   top: Responsive.setHeight(20),
                   bottom: Responsive.setHeight(8), 
                 ),
+                
                 child: Column(
                   children: [
                     FeatureButton(
@@ -105,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                         );
                       },
                     ),
-                    const SizedBox(height: 10), 
+                    const SizedBox(height: 5), 
                     FeatureButton(
                       title: AppLocalizations.of(context)!.embassyServices,
                       icon: Icons.account_balance_outlined,
