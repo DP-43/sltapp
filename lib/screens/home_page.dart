@@ -23,10 +23,11 @@ class _HomePageState extends State<HomePage> {
 
   // The local asset paths for the requested images
   final List<String> _imagePaths = [
-    'assets/images/gallefort.jpg',
-    'assets/images/nelumkuluna.jpg',
-    'assets/images/sigiriya.jpg',
     'assets/images/maligawa.jpg',
+    'assets/images/nelumkuluna.jpg',
+    'assets/images/gallefort.jpg',
+    'assets/images/temple.jpg',
+  
   ];
   
 
@@ -77,7 +78,7 @@ class _HomePageState extends State<HomePage> {
             children: [
             
               Padding(
-                padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
+                padding: const EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0),
                 child: ImageCarousel(
                   imagePaths: _imagePaths,
                   height: carouselHeight,

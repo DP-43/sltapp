@@ -83,9 +83,7 @@ class _CaseDetailsPageState extends State<CaseDetailsPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
 
-                
                   //case reference card
-
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(24),
