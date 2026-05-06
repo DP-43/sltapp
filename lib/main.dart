@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
           
           locale: languageProvider.currentLocale, 
           localizationsDelegates: const [
+            //load arb files
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,

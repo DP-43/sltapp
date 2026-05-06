@@ -226,6 +226,12 @@ class _SubmitComplaintPageState extends State<SubmitComplaintPage> {
                     hint: AppLocalizations.of(context)!.firstName,
                     icon: Icons.person,
                   ),
+                  const SizedBox(height: 12),
+                  CustomTextField(
+                    controller: _lastNameController,
+                    hint: AppLocalizations.of(context)!.lastName,
+                    icon: Icons.person,
+                  ),
                   const SizedBox(height: 12), 
                   CustomTextField(
                     controller: _mobileController,
