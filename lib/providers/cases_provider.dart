@@ -43,6 +43,7 @@ class CasesProvider extends ChangeNotifier {
           description:
               'The employer has violated the terms of the employment contract by withholding agreed salary payments for three consecutive months.',
           date: '23 April 2026',
+          time: '09:30 AM',
           status: 'Under Review',
         ),
         const CaseModel(
@@ -51,7 +52,8 @@ class CasesProvider extends ChangeNotifier {
           description:
               'No contact has been possible with the employer for over two weeks. The worker is isolated and unable to reach the recruitment agency.',
           date: '20 April 2026',
-          status: 'Pending',
+          time: '02:15 PM',
+          status: 'Submitted',
         ),
         const CaseModel(
           id: 'CASE-2050',
@@ -59,6 +61,7 @@ class CasesProvider extends ChangeNotifier {
           description:
               'The worker has requested immediate repatriation due to unsafe working conditions. All required documentation has been submitted.',
           date: '15 April 2026',
+          time: '11:45 AM',
           status: 'Resolved',
         ),
         const CaseModel(
@@ -67,6 +70,7 @@ class CasesProvider extends ChangeNotifier {
           description:
               'Worker has been left stranded after the employer abandoned the worksite. Emergency shelter and travel assistance is required.',
           date: '10 April 2026',
+          time: '04:00 PM',
           status: 'In Progress',
         ),
         const CaseModel(
@@ -75,7 +79,8 @@ class CasesProvider extends ChangeNotifier {
           description:
               'The employer is illegally retaining the worker\'s passport and refusing to return it despite multiple requests.',
           date: '5 April 2026',
-          status: 'Pending',
+          time: '10:05 AM',
+          status: 'Awaiting Info',
         ),
         const CaseModel(
           id: 'CASE-2053',
@@ -83,7 +88,8 @@ class CasesProvider extends ChangeNotifier {
           description:
               'General complaint submitted regarding unsafe accommodation conditions provided by the employer.',
           date: '1 April 2026',
-          status: 'Rejected',
+          time: '08:20 AM',
+          status: 'Closed',
         ),
       ];
      

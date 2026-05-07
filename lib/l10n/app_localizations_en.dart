@@ -57,7 +57,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get caseSummary => 'Case Summary';
 
   @override
-  String get activeUnsolved => 'Active (Unsolved)';
+  String get activeUnsolved => 'Active Cases';
 
   @override
   String get resolved => 'Resolved';

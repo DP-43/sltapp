@@ -199,7 +199,7 @@ abstract class AppLocalizations {
   /// No description provided for @activeUnsolved.
   ///
   /// In en, this message translates to:
-  /// **'Active (Unsolved)'**
+  /// **'Active Cases'**
   String get activeUnsolved;
 
   /// No description provided for @resolved.

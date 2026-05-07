@@ -28,7 +28,7 @@ class AuthProvider extends ChangeNotifier {
       }
     
       if (password != '1234') {
-        throw Exception("Invalid credentials! Try password '1234'.");
+        throw Exception("Invalid credentials! Try again.");
       }
       
    
@@ -134,7 +134,7 @@ class SignUpProvider extends ChangeNotifier {
 //   body: { 'first_name': firstName, ... },
 // );
 
-      // 1. Basic validation
+    
       if (firstName.isEmpty || lastName.isEmpty || password.isEmpty) {
         throw Exception("Please fill out all required fields.");
       }
@@ -143,12 +143,12 @@ class SignUpProvider extends ChangeNotifier {
         throw Exception("Please provide either your NIC or Passport.");
       }
 
-      // 2. Validate passwords match
+  
       if (password != confirmPassword) {
         throw Exception("Passwords do not match!");
       }
 
-      // Store data on success
+      //store success data
       _firstName = firstName;
       _lastName = lastName;
       _email = email;
@@ -158,12 +158,12 @@ class SignUpProvider extends ChangeNotifier {
 
       _isLoading = false;
       notifyListeners();
-      return true; // Success
+      return true;
     } catch (e) {
       _isLoading = false;
       _error = e.toString().replaceAll('Exception: ', '');
       notifyListeners();
-      return false; // Error
+      return false; 
     }
   }
 }

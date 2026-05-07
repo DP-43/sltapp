@@ -3,6 +3,7 @@ class CaseModel {
   final String category;
   final String description;
   final String date;
+  final String time;
   final String status;
 
   const CaseModel({
@@ -10,9 +11,10 @@ class CaseModel {
     required this.category,
     required this.description,
     required this.date,
+    required this.time,
     required this.status,
   });
 
   //When case still open
-  bool get isActive => status != 'Resolved' && status != 'Rejected';
+  bool get isActive => status != 'Resolved' && status != 'Closed';
 }
