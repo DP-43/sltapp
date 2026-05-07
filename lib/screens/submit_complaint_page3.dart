@@ -153,7 +153,7 @@ class _SubmitComplaintPage3State extends State<SubmitComplaintPage3> {
                   color: AppColors.primary,
                   onPressed: () {
                     context.read<ComplaintProvider>().updateStep3(
-                      selectedCategory: _selectedCategory??"",
+                      expectedResolution: _selectedCategory??"",
                      
                     );
                     Navigator.push(

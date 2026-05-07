@@ -100,4 +100,38 @@ class CasesProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void addCase({
+    required String category,
+    required String description,
+  }) {
+    // generate case ID
+    final newId = 'CASE-${2054 + _cases.length}';
+    
+    // get currnt date time
+    final now = DateTime.now();
+    final months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    final dateStr = '${now.day} ${months[now.month - 1]} ${now.year}';
+    
+    
+    int hour = now.hour;
+    final period = hour >= 12 ? 'PM' : 'AM';
+    if (hour == 0) hour = 12;
+    if (hour > 12) hour -= 12;
+    final minStr = now.minute.toString().padLeft(2, '0');
+    final timeStr = '${hour.toString().padLeft(2, '0')}:$minStr $period';
+
+    final newCase = CaseModel(
+      id: newId,
+      category: category.isEmpty ? 'Other' : category,
+      description: description,
+      date: dateStr,
+      time: timeStr,
+      status: 'Submitted',
+    );
+
+    // insert and show as latest
+    _cases.insert(0, newCase);
+    notifyListeners();
+  }
 }
