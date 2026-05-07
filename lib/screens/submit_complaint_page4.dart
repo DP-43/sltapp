@@ -12,6 +12,7 @@ import '../utils/app_colors.dart';
 import '../widgets/custom_button.dart';
 import 'package:provider/provider.dart';
 import 'package:slt/providers/complaint_provider.dart';
+import 'package:slt/providers/cases_provider.dart';
 
 class SubmitComplaintPage4 extends StatefulWidget {
   const SubmitComplaintPage4({super.key});
@@ -385,8 +386,15 @@ class _SubmitComplaintPage4State extends State<SubmitComplaintPage4> {
                   color: AppColors.primary,
                   onPressed: () {
                     
+                    final compProvider = context.read<ComplaintProvider>();
                     
-                    context.read<ComplaintProvider>().clearAll();
+                    //add new case to CasesProvider
+                    context.read<CasesProvider>().addCase(
+                      category: compProvider.selectedCategory,
+                      description: compProvider.description,
+                    );
+                    
+                    compProvider.clearAll();
 
                     Navigator.pushAndRemoveUntil(
                       context,

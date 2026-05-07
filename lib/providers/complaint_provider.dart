@@ -13,6 +13,7 @@ class ComplaintProvider extends ChangeNotifier{
   String _passport = "";
    String _nic = "";
   String _selectedCategory = "";
+  String _expectedResolution = "";
   String _description = "";
   List<String> _selectedFiles = [];
 
@@ -28,6 +29,7 @@ class ComplaintProvider extends ChangeNotifier{
   String get passport => _passport;
   String get nic => _nic;
   String get selectedCategory => _selectedCategory;
+  String get expectedResolution => _expectedResolution;
    String get description => _description;
   List<String> get selectedFiles => _selectedFiles;
   
@@ -63,10 +65,10 @@ class ComplaintProvider extends ChangeNotifier{
     notifyListeners();
   }
   void updateStep3({
-    required String selectedCategory,
+    required String expectedResolution,
     
   }){
-    _selectedCategory = selectedCategory;
+    _expectedResolution = expectedResolution;
     
     notifyListeners();
   } 
@@ -97,6 +99,7 @@ class ComplaintProvider extends ChangeNotifier{
     _passport = "";
      _nic = "";
     _selectedCategory = "";
+    _expectedResolution = "";
     _description = "";
     _selectedFiles = [];
 

@@ -179,7 +179,7 @@ class _CaseDetailsPageState extends State<CaseDetailsPage> {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text('Category : ', style: AppTextStyles.detailCardLabel),
+                            const Text('Incident Category : ', style: AppTextStyles.detailCardLabel),
                             Expanded(
                               child: Text(
                                 c.category,
