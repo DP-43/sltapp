@@ -57,10 +57,10 @@ class AppLocalizationsSi extends AppLocalizations {
   String get caseSummary => 'නඩු සාරාංශය';
 
   @override
-  String get activeUnsolved => 'ක්‍රියාකාරී (විසඳා නැත)';
+  String get activeUnsolved => 'ක්‍රියාකාරී පැමිණිලි';
 
   @override
-  String get resolved => 'විසඳා ඇත';
+  String get resolved => 'විසඳා ඇති පැමිණිලි';
 
   @override
   String get reportIssue => 'ගැටළුවක් වාර්තා කරන්න';

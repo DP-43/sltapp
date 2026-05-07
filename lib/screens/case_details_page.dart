@@ -4,6 +4,7 @@ import '../utils/app_colors.dart';
 import '../models/case_model.dart';
 import '../providers/cases_provider.dart';
 import '../utils/app_text_styles.dart';
+import '../utils/status_colors.dart';
 
 class CaseDetailsPage extends StatefulWidget {
   final String caseId;
@@ -25,17 +26,6 @@ class _CaseDetailsPageState extends State<CaseDetailsPage> {
         provider.fetchCases();
       }
     });
-  }
-
-  Color _statusColor(String status) {
-    switch (status) {
-      case 'Resolved':    return Colors.green;
-      case 'Rejected':    return Colors.red;
-      case 'In Progress': return Colors.purple;
-      case 'Pending':     return Colors.blue;
-      case 'Under Review':
-      default:            return Colors.orange;
-    }
   }
 
   @override
@@ -75,7 +65,7 @@ class _CaseDetailsPageState extends State<CaseDetailsPage> {
               );
             }
 
-            final Color statusColor = _statusColor(c.status);
+            final Color statusColor = StatusColors.getColor(c.status);
 
             return SingleChildScrollView(
               padding: const EdgeInsets.all(20.0),
@@ -110,56 +100,112 @@ class _CaseDetailsPageState extends State<CaseDetailsPage> {
                           c.id,
                           style: AppTextStyles.caseIdLarge,
                         ),
-                        const Divider(height: 32),
+                        const Divider(height: 2),
 
-                        //Status badge
-                        const Text('Status', style: AppTextStyles.detailCardLabel),
-                        const SizedBox(height: 8),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                          decoration: BoxDecoration(
-                            color: statusColor.withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: statusColor),
-                          ),
-                          child: Text(
-                            c.status.toUpperCase(),
-                            style: TextStyle(
-                              color: statusColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12,
-                            ),
-                          ),
-                        ),
-
-                        const SizedBox(height: 24),
-
-                        const Text('Category', style: AppTextStyles.detailCardLabel),
-                        const SizedBox(height: 8),
-                        Text(
-                          c.category,
-                          style: AppTextStyles.bodyTextDark,
-                        ),
-
-                        const SizedBox(height: 24),
-
-                       
-                        const Text('Date Submitted', style: AppTextStyles.detailCardLabel),
-                        const SizedBox(height: 8),
+                        // Status Timeline
+                        
+                        const SizedBox(height: 16),
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Icon(Icons.calendar_today_outlined, size: 16, color: AppColors.primary),
-                            const SizedBox(width: 8),
-                            Text(
-                              c.date,
-                              style: AppTextStyles.bodyTextDark,
+                            // Timeline dot & line indicator
+                            Column(
+                              children: [
+                                Container(
+                                  width: 16,
+                                  height: 16,
+                                  decoration: BoxDecoration(
+                                    color: statusColor,
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: Colors.black.withValues(alpha: 0.3), 
+                                      width: 4
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  width: 2,
+                                  height: 80,
+                                  color: Colors.grey.shade300,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(width: 16),
+
+                            // timeline
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text.rich(
+                                    TextSpan(
+                                      children: [
+                                        const TextSpan(
+                                          text: 'Status Changed : ',
+                                          style: TextStyle(color: Colors.black),
+                                        ),
+                                        TextSpan(
+                                          text: c.status,
+                                          style: TextStyle(color: statusColor),
+                                        ),
+                                      ],
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    'Today (${c.date}) : ${c.time}',
+                                    style: TextStyle(
+                                      color: Colors.grey.shade500,
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    'Case moved from "Pending" to "${c.status}" after initial document checks.',
+                                    style: AppTextStyles.bodyTextDark,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
 
                         const SizedBox(height: 24),
 
-            
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('Category : ', style: AppTextStyles.detailCardLabel),
+                            Expanded(
+                              child: Text(
+                                c.category,
+                                style: AppTextStyles.bodyTextDark,
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        const SizedBox(height: 14),
+ 
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('Case Submitted :', style: AppTextStyles.detailCardLabel),
+                            
+                            const SizedBox(width: 8),
+                            Text(
+                              '${c.date} at ${c.time}',
+                              style: AppTextStyles.bodyTextDark,
+                            ),
+                          ],
+                        ),
+
+                        const SizedBox(height: 14),
+
                         const Text('Description', style: AppTextStyles.detailCardLabel),
                         const SizedBox(height: 8),
                         Text(

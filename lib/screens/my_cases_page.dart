@@ -6,6 +6,7 @@ import '../utils/app_text_styles.dart';
 import '../models/case_model.dart';
 import '../providers/cases_provider.dart';
 import 'case_details_page.dart';
+import '../utils/status_colors.dart';
 
 class MyCasesPage extends StatefulWidget {
   const MyCasesPage({super.key});
@@ -28,17 +29,6 @@ class _MyCasesPageState extends State<MyCasesPage> {
         provider.fetchCases();
       }
     });
-  }
-
-  Color _statusColor(String status) {
-    switch (status) {
-      case 'Resolved':    return Colors.green;
-      case 'Rejected':    return Colors.red;
-      case 'In Progress': return Colors.purple;
-      case 'Pending':     return Colors.blue;
-      case 'Under Review':
-      default:            return Colors.orange;
-    }
   }
 
   @override
@@ -118,7 +108,7 @@ class _MyCasesPageState extends State<MyCasesPage> {
                       itemCount: casesProvider.cases.length,
                       itemBuilder: (context, index) {
                         final CaseModel c = casesProvider.cases[index];
-                        final Color statusColor = _statusColor(c.status);
+                        final Color statusColor = StatusColors.getColor(c.status);
 
                         return GestureDetector(
                           onTap: () => Navigator.push(

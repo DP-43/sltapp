@@ -7,6 +7,7 @@ import 'case_details_page.dart';
 import 'submit_complaint_page.dart';
 import 'my_cases_page.dart';
 import '../utils/app_text_styles.dart';
+import '../utils/status_colors.dart';
 import '../widgets/custom_button.dart';
 
 class ComplaintPortalPage extends StatefulWidget {
@@ -226,9 +227,7 @@ class _ComplaintPortalPageState extends State<ComplaintPortalPage> {
                           itemCount: latestCases.length,
                           itemBuilder: (context, index) {
                             final c = latestCases[index];
-                            final statusColor = c.status == 'Under Review'
-                                ? Colors.orange.shade700
-                                : AppColors.primary;
+                            final statusColor = StatusColors.getColor(c.status);
 
                             return Container(
                               margin: const EdgeInsets.only(bottom: 12),
